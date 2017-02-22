@@ -25,7 +25,7 @@ class TZ():
                 return location_timestamp
             else:
                 error = 'Fail to access Google Time Zone API!'
-                return error
+                print(error)
         except (requests.Timeout, requests.ConnectionError):
             error = 'Network problem or OpenWeatherMap API connection timeout!'
-            return error
+            print(error)

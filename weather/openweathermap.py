@@ -25,10 +25,10 @@ class OpenWeatherMap(object):
                 return data
             else:
                 error = 'Cannot access OpenWeatherMap API!'
-                return error
+                print(error)
         except (requests.Timeout, requests.ConnectionError):
             error = 'Network problem Or Timeout!'
-            return error
+            print(error)
 
     def set_units(self, unit):
         '''set unit of measure when print weather information'''
@@ -62,7 +62,7 @@ class OpenWeatherMap(object):
 
         tz = TZ()
         location_timestamp = tz.get_location_timestamp(utc_timestamp, location)
-        if isinstance(location_timestamp, int):
+        if location_timestamp:
             return location_timestamp
         else:
             return timestamp
@@ -78,7 +78,7 @@ class CurrentWeather(OpenWeatherMap):
         params = {'q': location, 'units': unit,
                   'lang': self.lang, 'appid': self.appid}
         data = self.get_request(params)
-        if isinstance(data, dict):
+        if data:
             if location == data['name'].lower().strip():
                 data['unit'] = params['units']
                 return data
