@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+{% block content %}
+{% for record in history %}
+<div class="row">
+  <div class="col-lg-6">
+    <h1>{{ record['basic'].location|capitalize }}</h1>
+    <p class="lead">
+      <p>{{ record['dt'] }}</p>
+      <strong>{{ record['basic'].description }}</strong>
+      <p>
+        <span><img src="http://openweathermap.org/img/w/{{ record['basic'].icon }}.png" alt="current icon"></span>
+        <span class="important">{{ record['basic'].temperature }}
+          {% if record['basic'].temp_unit=='metric' %}&degC
+          {% elif record['basic'].temp_unit=='imperial' %}&degF
+          {% endif %}
+        </span>
+      </p>
+    </p>
+  </div>
+  <div class="col-lg-6">
+    <table class="table table-condensed table-striped">
+      {% for key, value in record['detail'].items() %}
+      <tr>
+         <th>{{ key }}</th>
+         <td>{{ value|join('') }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

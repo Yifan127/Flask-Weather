@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="current weather and 7 days forecast">
+    <meta name="author" content="Yifan Zhang">
+    <link rel="icon" href="../static/sun.ico">
+
+    <title>{% block title %}{% endblock %} Update Weather Report</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    {% endblock %}
+  </head>
+  <body>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">Weather Report</h3>
+      </div>
+
+      {% if form %}
+      <div class="jumbotron">
+        <h3>Please input weather description then update.</h3>
+          {% from "_formhelper.html" import render_field %}
+          <form class="form-horizontal" action="{{ url_for('weather.update', location=form.location.data) }}" method = "post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.location.label(class="col-sm-2 control-label") }}
+              <div class="col-sm-10">
+                {{ form.location(class="form-control", readonly=true) }}
+              </div>
+            </div>
+            <div class="form-group">
+              {{ form.description.label(class="col-sm-2 control-label") }}
+              <div class="col-sm-10 has-error">
+                {{ render_field(form.description, class="form-control") }}
+              </div>
+            </div>
+            <div class="form-group">
+              {{ form.update(class="btn btn-primary") }}
+              {{ form.back(class="btn btn-primary", formmethod="get") }}
+            </div>
+          </form>
+      </div>
+      {% endif %}
+
+      {% if alert %}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-danger">
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            </div>
+          {% endif %}
+        {% endwith %}
+      {% else %}
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="alert alert-success">
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+            </div>
+          {% endif %}
+         {% endwith %}
+      {% endif %}
+      <div class="row">
+        {% if basic %}
+        <div class="col-lg-6">
+          <h1>{{ basic.location|capitalize }}</h1>
+          <p class="lead">
+            <p>{{ dt }}</p>
+            <strong>{{ basic.description }}</strong>
+            <p>
+              <span><img src="http://openweathermap.org/img/w/{{ basic.icon }}.png" alt="current icon"></span>
+              <span class="important">{{ basic.temperature }}
+                {% if basic.temp_unit=='metric' %}
+                &degC
+                {% elif basic.temp_unit=='imperial' %}
+                &degF
+                {% endif %}
+              </span>
+            </p>
+          </p>
+        </div>
+        {% endif %}
+        {% if detail %}
+        <div class="col-lg-6">
+          <table class="table table-condensed table-striped">
+            {% for key, value in detail.items() %}
+            <tr>
+               <th>{{ key }}</th>
+               <td>{{ value|join('') }}</td>
+            </tr>
+            {% endfor %}
+          </table>
+        </div>
+        {% endif %}
+        {% if daily %}
+        <table class="table">
+          <tr>
+            {% for day in daily %}
+            <td>
+            <div>{{ day['weekday'] }}</div>
+            <div><img src="http://openweathermap.org/img/w/{{ day['icon'] }}.png" alt="daily icon"></div>
+              <div>{{ day['temp_min'] }}
+                {% if basic.temp_unit=='metric' %}
+                &degC
+                {% elif basic.temp_unit=='imperial' %}
+                &degF
+                {% endif %}
+              </div>
+              <div>
+                {{ day['temp_max'] }}
+                {% if basic.temp_unit=='metric': %}
+                &degC
+                {% elif basic.temp_unit=='imperial': %}
+                &degF
+                {% endif %}
+              </div>
+            </td>
+            {% endfor %}
+          </tr>
+        </table>
+        {% endif %}
+      </div>
+      <footer class="footer">
+        {% block footer %}
+        <p>&copy; 2017 Company, Inc. Weather Report Web v0.2</p>
+        {% endblock %}
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+{% extends "index.html" %}
+{% block head %}
+  {{ super() }}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable()
+      data.addColumn('string', 'Day');
+      data.addColumn('number', 'Low');
+      data.addColumn({type: 'number', role: 'annotation'});
+      data.addColumn('number', 'High');
+      data.addColumn({type: 'number', role: 'annotation'});
+
+      data.addRows([
+        {% for day in daily %}
+          ['{{ day['weekday'] }}', {{ day['temp_min'] }}, {{ day['temp_min'] }}, {{ day['temp_max'] }}, {{ day['temp_max'] }}],
+        {% endfor %}
+      ]);
+
+      var options = {
+        chartArea:{left:0,top:0,width:'100%',height:'80%'},
+        pointSize:10,
+        legend: {position: 'none'},
+        annotations: {
+          textStyle: {
+            fontSize: 14,
+            bold: true
+          }
+        },
+        hAxis: {
+          textStyle: {
+            fontSize: 14,
+            bold: true
+          }
+        }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('daily_temp_chart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+{% endblock %}
+{% block content %}
+<div class="row">
+  {% if basic %}
+  <div class="col-md-6">
+    <h1>{{ basic.location|capitalize }}</h1>
+    <p class="lead">
+      <p>{{ dt }}</p>
+      <strong>{{ basic.description }}</strong>
+      <p>
+        <span><img src="http://openweathermap.org/img/w/{{ basic.icon }}.png" alt="current icon"></span>
+        <span class="important">{{ basic.temperature }}
+          {% if basic.temp_unit=='metric' %}
+          &degC
+          {% elif basic.temp_unit=='imperial' %}
+          &degF
+          {% endif %}
+        </span>
+      </p>
+    </p>
+  </div>
+  {% endif %}
+  {% if detail %}
+  <div class="col-md-6">
+    <table class="table table-condensed table-striped">
+      {% for key, value in detail.items() %}
+      <tr>
+         <th>{{ key }}</th>
+         <td>{{ value|join('') }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+  {% if daily %}
+  <div class="col-md-12">
+    <div id="daily_temp_chart"></div>
+  </div>
+  <div class="col-md-12">
+    <table style="width:100%">
+      <tr>
+        {% for day in daily %}
+        <td class="text-center">
+          <div><img src="http://openweathermap.org/img/w/{{ day['icon'] }}.png" alt="daily icon"></div>
+        </td>
+        {% endfor %}
+      </tr>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

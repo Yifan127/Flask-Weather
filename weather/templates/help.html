@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+{% block content %}
+<h3>Instruction</h3>
+<p class="help-block">
+  {% for line in help: %}
+    {{ line }}<br>
+  {% endfor %}
+</p>
+{% endblock %}
