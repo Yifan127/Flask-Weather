@@ -1,0 +1,73 @@
+{"desc_id":200,"group":"Thunderstorm","description":"thunderstorm with light rain"}
+{"desc_id":201,"group":"Thunderstorm","description":"thunderstorm with rain"}
+{"desc_id":202,"group":"Thunderstorm","description":"thunderstorm with heavy rain"}
+{"desc_id":210,"group":"Thunderstorm","description":"light thunderstorm"}
+{"desc_id":211,"group":"Thunderstorm","description":"thunderstorm"}
+{"desc_id":212,"group":"Thunderstorm","description":"heavy thunderstorm"}
+{"desc_id":221,"group":"Thunderstorm","description":"ragged thunderstorm"}
+{"desc_id":230,"group":"Thunderstorm","description":"thunderstorm with light drizzle"}
+{"desc_id":231,"group":"Thunderstorm","description":"thunderstorm with drizzle"}
+{"desc_id":232,"group":"Thunderstorm","description":"thunderstorm with heavy drizzle"}
+{"desc_id":300,"group":"Drizzle","description":"light intensity drizzle"}
+{"desc_id":301,"group":"Drizzle","description":"drizzle"}
+{"desc_id":302,"group":"Drizzle","description":"heavy intensity drizzle"}
+{"desc_id":310,"group":"Drizzle","description":"light intensity drizzle rain"}
+{"desc_id":311,"group":"Drizzle","description":"drizzle rain"}
+{"desc_id":312,"group":"Drizzle","description":"heavy intensity drizzle rain"}
+{"desc_id":313,"group":"Drizzle","description":"shower rain and drizzle"}
+{"desc_id":314,"group":"Drizzle","description":"heavy shower rain and drizzle"}
+{"desc_id":321,"group":"Drizzle","description":"shower drizzle"}
+{"desc_id":500,"group":"Rain","description":"light rain"}
+{"desc_id":501,"group":"Rain","description":"moderate rain"}
+{"desc_id":502,"group":"Rain","description":"heavy intensity rain"}
+{"desc_id":503,"group":"Rain","description":"very heavy rain"}
+{"desc_id":504,"group":"Rain","description":"extreme rain"}
+{"desc_id":511,"group":"Rain","description":"freezing rain"}
+{"desc_id":520,"group":"Rain","description":"light intensity shower rain"}
+{"desc_id":521,"group":"Rain","description":"shower rain"}
+{"desc_id":522,"group":"Rain","description":"heavy intensity shower rain"}
+{"desc_id":531,"group":"Rain","description":"ragged shower rain"}
+{"desc_id":600,"group":"Snow","description":"light snow"}
+{"desc_id":601,"group":"Snow","description":"snow"}
+{"desc_id":602,"group":"Snow","description":"heavy snow"}
+{"desc_id":611,"group":"Snow","description":"sleet"}
+{"desc_id":612,"group":"Snow","description":"shower sleet"}
+{"desc_id":615,"group":"Snow","description":"light rain and snow"}
+{"desc_id":616,"group":"Snow","description":"rain and snow"}
+{"desc_id":620,"group":"Snow","description":"light shower snow"}
+{"desc_id":621,"group":"Snow","description":"shower snow"}
+{"desc_id":622,"group":"Snow","description":"heavy shower snow"}
+{"desc_id":701,"group":"Atmosphere","description":"mist"}
+{"desc_id":711,"group":"Atmosphere","description":"smoke"}
+{"desc_id":721,"group":"Atmosphere","description":"haze"}
+{"desc_id":731,"group":"Atmosphere","description":"sand,dust whirls"}
+{"desc_id":741,"group":"Atmosphere","description":"fog"}
+{"desc_id":751,"group":"Atmosphere","description":"sand"}
+{"desc_id":761,"group":"Atmosphere","description":"dust"}
+{"desc_id":762,"group":"Atmosphere","description":"volcanic ash"}
+{"desc_id":771,"group":"Atmosphere","description":"squalls"}
+{"desc_id":781,"group":"Atmosphere","description":"tornado"}
+{"desc_id":800,"group":"Clear","description":"clear sky"}
+{"desc_id":801,"group":"Clouds","description":"few clouds"}
+{"desc_id":802,"group":"Clouds","description":"scattered clouds"}
+{"desc_id":803,"group":"Clouds","description":"broken clouds"}
+{"desc_id":804,"group":"Clouds","description":"overcast clouds"}
+{"desc_id":900,"group":"Extreme","description":"tornado"}
+{"desc_id":901,"group":"Extreme","description":"tropical storm"}
+{"desc_id":902,"group":"Extreme","description":"hurricane"}
+{"desc_id":903,"group":"Extreme","description":"cold"}
+{"desc_id":904,"group":"Extreme","description":"hot"}
+{"desc_id":905,"group":"Extreme","description":"windy"}
+{"desc_id":906,"group":"Extreme","description":"hail"}
+{"desc_id":951,"group":"Additional","description":"calm"}
+{"desc_id":952,"group":"Additional","description":"light breeze"}
+{"desc_id":953,"group":"Additional","description":"gentle breeze"}
+{"desc_id":954,"group":"Additional","description":"moderate breeze"}
+{"desc_id":955,"group":"Additional","description":"fresh breeze"}
+{"desc_id":956,"group":"Additional","description":"strong breeze"}
+{"desc_id":957,"group":"Additional","description":"high wind,near gale"}
+{"desc_id":958,"group":"Additional","description":"gale"}
+{"desc_id":959,"group":"Additional","description":"severe gale"}
+{"desc_id":960,"group":"Additional","description":"storm"}
+{"desc_id":961,"group":"Additional","description":"violent storm"}
+{"desc_id":962,"group":"Additional","description":"hurricane"}

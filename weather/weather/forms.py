@@ -2,8 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, RadioField, SubmitField, validators,\
                     ValidationError
 from sqlalchemy import distinct
-from weather import db
-from weather.models import Description
+from .. import db
+from .models import Description
 
 
 class WeatherForm(FlaskForm):

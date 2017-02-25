@@ -2,8 +2,9 @@ import requests
 from datetime import datetime
 import time
 import calendar
-from weather.constant import OWP
-from weather.googletz import TZ
+from .. import app
+from .constant import OWP
+from .googletz import TZ
 
 
 class OpenWeatherMap(object):
@@ -72,21 +73,23 @@ class CurrentWeather(OpenWeatherMap):
     def __init__(self):
         super().__init__(OWP.OWM_CURRENT_API)
 
-    def get_weather(self, location, unit):
+    def get(self, location, unit):
         '''This function send a request to get current weather information,
         then prints the data'''
         params = {'q': location, 'units': unit,
                   'lang': self.lang, 'appid': self.appid}
+        app.logger.debug('Params is {}'.format(params))
         data = self.get_request(params)
+        app.logger.debug('Data from OpenWeatherMap is {}'.format(data))
         if data:
             if location == data['name'].lower().strip():
                 data['unit'] = params['units']
                 return data
             else:
                 error = 'Cannot find city: {0}!'.format(location)
-                return error
+                app.logger.debug(error)
         else:
-            return data
+            app.logger.debug('Failed to access OpenWeatherMap!')
 
     def organize_data(self, data):
         weather = {}
@@ -139,7 +142,7 @@ class DailyWeather(OpenWeatherMap):
     def __init__(self):
         super().__init__(OWP.OWM_DAILY_API)
 
-    def get_weather(self, location, unit, cnt=7):
+    def get(self, location, unit, cnt=7):
         '''This function sends a request to get daily forecast weather information,
         then prints the data'''
         params = {'q': location, 'units': unit, 'cnt': cnt,
@@ -151,9 +154,9 @@ class DailyWeather(OpenWeatherMap):
                 return data
             else:
                 error = 'Cannot find city: {0}!'.format(location)
-                return error
+                app.logger.debug(error)
         else:
-            return data
+            app.logger.debug('Failed to access OpenWeatherMap!')
 
     def organize_data(self, data):
         weather = {}
@@ -174,6 +177,7 @@ class DailyWeather(OpenWeatherMap):
                 dt = datetime.fromtimestamp(ts)
                 weekday = calendar.day_abbr[dt.weekday()]
                 data = {'dt': dt, 'weekday': weekday,
+                        'description': day['weather'][0]['description'],
                         'icon': day['weather'][0]['icon'],
                         'temp_min': round(day['temp']['min']),
                         'temp_max': round(day['temp']['max'])}

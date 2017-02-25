@@ -1,5 +1,5 @@
 import requests
-from weather.constant import GTZ
+from .constant import GTZ
 
 
 class TZ():
